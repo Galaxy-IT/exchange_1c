@@ -1,10 +1,12 @@
 <?php
+
 /**
  * This file is part of galaxy-it/exchange_1c package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 declare(strict_types=1);
 
 namespace Galaxy\LaravelExchange1C\Services;
@@ -47,6 +49,8 @@ class FileLoaderService
         $filePath = $this->config->getFullPath($filename);
         if ($filename === 'orders.xml') {
             throw new \LogicException('This method is not released');
+        } elseif (strlen(file_get_contents('php://input'))) {
+            throw new \LogicException('File is invalid');
         } else {
             $directory = dirname($filePath);
             if (!is_dir($directory)) {
@@ -72,7 +76,7 @@ class FileLoaderService
      */
     public function clearImportDirectory(): void
     {
-        $tmp_files = glob($this->config->getImportDir().DIRECTORY_SEPARATOR.'*.*');
+        $tmp_files = glob($this->config->getImportDir() . DIRECTORY_SEPARATOR . '*.*');
         if (is_array($tmp_files)) {
             foreach ($tmp_files as $v) {
                 unlink($v);
