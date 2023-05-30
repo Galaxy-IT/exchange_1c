@@ -1,14 +1,17 @@
 <?php
+
 /**
  * This file is part of galaxy-it/exchange_1c package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 declare(strict_types=1);
 
 namespace Galaxy\LaravelExchange1C\Controller;
 
+use Galaxy\LaravelExchange1C\Events\ExchangeEvent;
 use Galaxy\LaravelExchange1C\Exceptions\Exchange1CException;
 use Galaxy\LaravelExchange1C\Services\CatalogService;
 use Galaxy\LaravelExchange1C\Jobs\CatalogServiceJob;
@@ -22,21 +25,6 @@ use Illuminate\Support\Facades\Log;
 class ImportController extends Controller
 {
     /**
-     * @var Log
-     */
-    private $logger;
-
-    /**
-     * ImportController constructor.
-     */
-    public function __construct()
-    {
-        if (config('exchange1c.log_channel', false)) {
-            $this->logger = Log::channel(config('exchange1c.log_channel'));
-        }
-    }
-
-    /**
      * @param Request        $request
      * @param CatalogService $service
      *
@@ -46,7 +34,8 @@ class ImportController extends Controller
     {
         $mode = $request->get('mode');
         $type = $request->get('type');
-        $this->log('requsest: '.print_r($request->all(), true));
+
+        $response = 'failure';
 
         try {
             if ($type == 'catalog') {
@@ -56,68 +45,36 @@ class ImportController extends Controller
 
                 if ($mode === 'init' or $mode === 'checkauth' or $mode === 'file') {
                     $response = $service->$mode();
-                    $this->log(sprintf(
-                        'New init request, type: %s, mode: %s, response: %s',
-                        $type,
-                        $mode,
-                        $response
-                    ));
+                } else {
+                    CatalogServiceJob::dispatch(
+                        $request->all(),
+                        $request->session()->all()
+                    )
+                        ->onQueue(config('exchange1c.queue'));
 
-                    return response($response, 200, ['Content-Type', 'text/plain']);
+                    $response = "success\n";
                 }
-
-                CatalogServiceJob::dispatch(
-                    $request->all(),
-                    $request->session()->all()
-                )
-                    ->onQueue(config('exchange1c.queue'));
-                $response = "success\n";
-
-                $this->log(sprintf(
-                    'New request, type: %s, mode: %s, response: %s. CatalogServiceJob is started',
-                    $type,
-                    $mode,
-                    $response
-                ));
-
-                return response($response, 200, ['Content-Type', 'text/plain']);
             } elseif ($type === 'sale') {
                 $response = $service->checkauth();
-                $this->log(sprintf(
-                    'New sale request, type: %s, mode: %s, response: %s. Logic for sale type not released!',
-                    $type,
-                    $mode,
-                    $response
-                ));
-
-                return response($response, 200, ['Content-Type', 'text/plain']);
             } else {
                 $message = sprintf('Logic for method %s not released', $type);
-                $this->log($message, 'error');
 
                 throw new \LogicException($message);
             }
         } catch (Exchange1CException $e) {
-            $this->log(
-                "exchange_1c: failure \n".$e->getMessage()."\n".$e->getFile()."\n".$e->getLine()."\n",
-                'error'
-            );
-
             $response = "failure\n";
-            $response .= $e->getMessage()."\n";
-            $response .= $e->getFile()."\n";
-            $response .= $e->getLine()."\n";
-
-            return response($response, 500, ['Content-Type', 'text/plain']);
+            $response .= $e->getMessage() . "\n";
+            $response .= $e->getFile() . "\n";
+            $response .= $e->getLine() . "\n";
         }
+
+        event(new ExchangeEvent($type, $mode, $response));
+
+        return response($response, $this->isSuccess($response) ? 200 : 400, ['Content-Type', 'text/plain']);
     }
 
-    private function log(string $message, string $type = 'info'): void
+    private function isSuccess($response)
     {
-        if (!$this->logger) {
-            return;
-        }
-
-        $this->logger->$type($message);
+        return !is_string($response) || !str_starts_with($response, 'failure');
     }
 }
