@@ -1,18 +1,21 @@
 <?php
+
 /**
  * This file is part of galaxy-it/exchange_1c package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
 declare(strict_types=1);
 
 namespace Galaxy\LaravelExchange1C\Services;
 
 use Galaxy\LaravelExchange1C\Config;
-use Galaxy\LaravelExchange1C\Exceptions\Exchange1CException;
 use Illuminate\Contracts\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
+use Galaxy\LaravelExchange1C\Library\CookieEncryption;
+use Galaxy\LaravelExchange1C\Exceptions\Exchange1CException;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**
@@ -63,13 +66,13 @@ class AuthService
             $this->session->save();
             $response = "success\n";
             $response .= config('session.cookie') . "\n";
-            $response .= $this->session->getId()."\n";
+            $response .= CookieEncryption::encryptString($this->session->getId()) . "\n";
 
-            $response .= 'timestamp='.time();
+            $response .= 'timestamp=' . time();
             if ($this->session instanceof SessionInterface) {
-                $this->session->set(self::SESSION_KEY.'_auth', $this->config->getLogin());
+                $this->session->set(self::SESSION_KEY . '_auth', $this->config->getLogin());
             } elseif ($this->session instanceof Session) {
-                $this->session->put(self::SESSION_KEY.'_auth', $this->config->getLogin());
+                $this->session->put(self::SESSION_KEY . '_auth', $this->config->getLogin());
             } else {
                 throw new Exchange1CException(sprintf('Session is not insatiable interface %s or %s', SessionInterface::class, Session::class));
             }
@@ -95,7 +98,7 @@ class AuthService
             }
         } else {
             $login = $this->config->getLogin();
-            $user = $this->session->get(self::SESSION_KEY.'_auth', null);
+            $user = $this->session->get(self::SESSION_KEY . '_auth', null);
 
             if (!$user || $user != $login) {
                 throw new Exchange1CException('auth error');

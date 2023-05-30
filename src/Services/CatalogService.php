@@ -9,6 +9,8 @@ declare(strict_types=1);
 
 namespace Galaxy\LaravelExchange1C\Services;
 
+use Galaxy\LaravelExchange1C\Library\CookieEncryption;
+
 /**
  * Class Catalog
  * Class for implementing CommerceML protocol
@@ -104,7 +106,7 @@ class CatalogService extends AbstractService
 
         $response = "success\n";
         $response .= config('session.cookie') . "\n";
-        $response .= $this->request->getSession()->getId()."\n";
+        $response .= CookieEncryption::encryptString($this->request->getSession()->getId())."\n";
         $response .= 'timestamp='.time();
 
         return $response;
