@@ -9,9 +9,10 @@ class SaleService
     protected XmlService $xml;
     protected Config $config;
 
-    public function __construct(XmlService $xmlService)
+    public function __construct(XmlService $xmlService, Config $config)
     {
         $this->xml = $xmlService;
+        $this->config = $config;
     }
 
     public function query()
