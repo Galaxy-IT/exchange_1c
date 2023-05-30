@@ -17,6 +17,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
 use Galaxy\LaravelExchange1C\Events\ExchangeEvent;
+use Galaxy\LaravelExchange1C\Services\SaleService;
 use Galaxy\LaravelExchange1C\Jobs\CatalogServiceJob;
 use Galaxy\LaravelExchange1C\Services\CatalogService;
 use Galaxy\LaravelExchange1C\Exceptions\Exchange1CException;
@@ -27,10 +28,12 @@ use Galaxy\LaravelExchange1C\Exceptions\Exchange1CException;
 class ImportController extends Controller
 {
     protected CatalogService $catalog;
+    protected SaleService $sale;
 
-    public function __construct(CatalogService $catalogService)
+    public function __construct(CatalogService $catalogService, SaleService $saleService)
     {
         $this->catalog = $catalogService;
+        $this->sale = $saleService;
     }
     /**
      * @param Request        $request
