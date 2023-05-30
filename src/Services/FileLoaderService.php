@@ -49,7 +49,7 @@ class FileLoaderService
         $filePath = $this->config->getFullPath($filename);
         if ($filename === 'orders.xml') {
             throw new \LogicException('This method is not released');
-        } elseif (strlen(file_get_contents('php://input'))) {
+        } elseif (strlen(file_get_contents('php://input')) == 0) {
             throw new \LogicException('File is invalid');
         } else {
             $directory = dirname($filePath);

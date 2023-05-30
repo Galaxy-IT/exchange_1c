@@ -11,26 +11,34 @@ declare(strict_types=1);
 
 namespace Galaxy\LaravelExchange1C\Controller;
 
-use Galaxy\LaravelExchange1C\Events\ExchangeEvent;
-use Galaxy\LaravelExchange1C\Exceptions\Exchange1CException;
-use Galaxy\LaravelExchange1C\Services\CatalogService;
-use Galaxy\LaravelExchange1C\Jobs\CatalogServiceJob;
+use Exception;
+use LogicException;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
+use Galaxy\LaravelExchange1C\Events\ExchangeEvent;
+use Galaxy\LaravelExchange1C\Jobs\CatalogServiceJob;
+use Galaxy\LaravelExchange1C\Services\CatalogService;
+use Galaxy\LaravelExchange1C\Exceptions\Exchange1CException;
 
 /**
  * Class ImportController.
  */
 class ImportController extends Controller
 {
+    protected CatalogService $catalog;
+
+    public function __construct(CatalogService $catalogService)
+    {
+        $this->catalog = $catalogService;
+    }
     /**
      * @param Request        $request
      * @param CatalogService $service
      *
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Illuminate\Http\Response
      */
-    public function request(Request $request, CatalogService $service)
+    public function request(Request $request)
     {
         $mode = $request->get('mode');
         $type = $request->get('type');
@@ -38,43 +46,46 @@ class ImportController extends Controller
         $response = 'failure';
 
         try {
-            if ($type == 'catalog') {
-                if (!method_exists($service, $mode)) {
-                    throw new Exchange1CException('not correct request, class ExchangeCML not found');
-                }
+            $this->check($mode, $type);
 
-                if ($mode === 'init' or $mode === 'checkauth' or $mode === 'file') {
-                    $response = $service->$mode();
-                } else {
-                    CatalogServiceJob::dispatch(
-                        $request->all(),
-                        $request->session()->all()
-                    )
-                        ->onQueue(config('exchange1c.queue'));
+            if ($type == 'catalog' && !in_array($mode, ['init', 'checkauth', 'file'])) {
+                CatalogServiceJob::dispatch(
+                    $request->all(),
+                    $request->session()->all()
+                )->onQueue(config('exchange1c.queue'));
 
-                    $response = "success\n";
-                }
-            } elseif ($type === 'sale') {
-                $response = $service->checkauth();
+                $response = "success\n";
             } else {
-                $message = sprintf('Logic for method %s not released', $type);
-
-                throw new \LogicException($message);
+                $response = $this->$type->$mode();
             }
-        } catch (Exchange1CException $e) {
+        } catch (Exception $e) {
             $response = "failure\n";
             $response .= $e->getMessage() . "\n";
-            $response .= $e->getFile() . "\n";
-            $response .= $e->getLine() . "\n";
         }
 
-        event(new ExchangeEvent($type, $mode, $response));
+        
+        if(is_string($response)) {
+            event(new ExchangeEvent($type, $mode, $response));
+            
+            return response($response, $this->isSuccess($response) ? 200 : 400, ['Content-Type', 'text/plain']);
+        }
 
-        return response($response, $this->isSuccess($response) ? 200 : 400, ['Content-Type', 'text/plain']);
+        return $response;
     }
 
     private function isSuccess($response)
     {
         return !is_string($response) || !str_starts_with($response, 'failure');
+    }
+
+    private function check(string $mode, string $type): void
+    {
+        if (!in_array($type, ['catalog', 'sale'])) {
+            throw new Exchange1CException('Incorrect request, type \'' . $type . '\' is not implemented');
+        }
+
+        if (!method_exists($this->$type, $mode)) {
+            throw new Exchange1CException('Incorrect request, mode \'' . $mode . '\' is not implemented');
+        }
     }
 }
