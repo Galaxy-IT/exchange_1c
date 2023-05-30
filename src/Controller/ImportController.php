@@ -58,6 +58,8 @@ class ImportController extends Controller
                 )->onQueue(config('exchange1c.queue'));
 
                 $response = "success\n";
+            } elseif ($type == 'catalog' && $mode == 'import') {
+                $response = 'success';
             } else {
                 $response = $this->$type->$mode();
             }
