@@ -56,7 +56,7 @@ class FileLoaderService
             if (!is_dir($directory)) {
                 mkdir($directory, 0755, true);
             }
-            $f = fopen($filePath, 'a+');
+            $f = fopen($filePath, 'w');
             fwrite($f, file_get_contents('php://input'));
             fclose($f);
             if ($this->config->isUseZip()) {
