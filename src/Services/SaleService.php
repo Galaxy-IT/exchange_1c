@@ -9,12 +9,14 @@ class SaleService
     protected XmlService $xml;
     protected Config $config;
     protected AuthService $auth;
+    protected CatalogService $catalog;
 
-    public function __construct(XmlService $xmlService, Config $config, AuthService $authService)
+    public function __construct(XmlService $xmlService, Config $config, AuthService $authService, CatalogService $catalogService)
     {
         $this->xml = $xmlService;
         $this->config = $config;
         $this->auth = $authService;
+        $this->catalog = $catalogService;
     }
 
     public function query()
@@ -27,4 +29,15 @@ class SaleService
 
         return $this->xml->response($data);
     }
+
+    public function checkauth(): string
+    {
+        return $this->auth->checkAuth();
+    }
+
+    public function init(): string
+    {
+        return $this->catalog->init();
+    }
+
 }
