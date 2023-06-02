@@ -40,4 +40,9 @@ class SaleService
         return $this->catalog->init();
     }
 
+    public function success()
+    {
+         return 'success';
+    }
+
 }
