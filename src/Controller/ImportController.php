@@ -48,14 +48,18 @@ class ImportController extends Controller
 
         $response = 'failure';
 
+        \Log::info([$mode, $type]);
+
         try {
             $this->check($mode, $type);
 
-            if ($type == 'catalog' && !in_array($mode, ['init', 'checkauth', 'file'])) {
-                CatalogServiceJob::dispatch(
-                    $request->all(),
-                    $request->session()->all()
-                )->onQueue(config('exchange1c.queue'));
+            if ($type == 'catalog' && !in_array($mode, ['init', 'checkauth', 'file', 'import'])) {
+                \Log::info('Job Mode ' . $mode);
+
+                // CatalogServiceJob::dispatch(
+                //     $request->all(),
+                //     $request->session()->all()
+                // )->onQueue(config('exchange1c.queue'));
 
                 $response = "success\n";
             } elseif ($type == 'catalog' && $mode == 'import') {
@@ -68,12 +72,17 @@ class ImportController extends Controller
             $response .= $e->getMessage() . "\n";
         }
 
-        
-        if(is_string($response)) {
+
+        if (is_string($response)) {
+            \log::info($response);
+            \Log::info('-------------------------------------------------------------------');
+
             event(new ExchangeEvent($type, $mode, $response));
-            
+
             return response($response, $this->isSuccess($response) ? 200 : 400, ['Content-Type', 'text/plain']);
         }
+
+        \Log::info('-------------------------------------------------------------------');
 
         return $response;
     }

@@ -27,4 +27,13 @@ class XmlService
 
         return $xml;
     }
+
+    public function parseXml(string $xml)
+    {
+        $xml = simplexml_load_string($xml);
+
+        $data = json_decode(json_encode($xml), true);
+
+        return $data;
+    }
 }
