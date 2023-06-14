@@ -45,4 +45,9 @@ class SaleService
          return 'success';
     }
 
+    public function file()
+    {
+        return 'success';
+    }
+
 }
