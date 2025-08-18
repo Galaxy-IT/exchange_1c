@@ -7,18 +7,18 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C\Services;
+namespace GalaxyIT\LaravelExchange1C\Services;
 
-use Galaxy\LaravelExchange1C\Config;
-use Galaxy\LaravelExchange1C\Events\AfterOffersSync;
-use Galaxy\LaravelExchange1C\Events\AfterUpdateOffer;
-use Galaxy\LaravelExchange1C\Events\BeforeOffersSync;
-use Galaxy\LaravelExchange1C\Events\BeforeUpdateOffer;
-use Galaxy\LaravelExchange1C\Exceptions\Exchange1CException;
-use Galaxy\LaravelExchange1C\Interfaces\EventDispatcherInterface;
-use Galaxy\LaravelExchange1C\Interfaces\ModelBuilderInterface;
-use Galaxy\LaravelExchange1C\Interfaces\OfferInterface;
-use Galaxy\LaravelExchange1C\Interfaces\ProductInterface;
+use GalaxyIT\LaravelExchange1C\Config;
+use GalaxyIT\LaravelExchange1C\Events\AfterOffersSync;
+use GalaxyIT\LaravelExchange1C\Events\AfterUpdateOffer;
+use GalaxyIT\LaravelExchange1C\Events\BeforeOffersSync;
+use GalaxyIT\LaravelExchange1C\Events\BeforeUpdateOffer;
+use GalaxyIT\LaravelExchange1C\Exceptions\Exchange1CException;
+use GalaxyIT\LaravelExchange1C\Interfaces\EventDispatcherInterface;
+use GalaxyIT\LaravelExchange1C\Interfaces\ModelBuilderInterface;
+use GalaxyIT\LaravelExchange1C\Interfaces\OfferInterface;
+use GalaxyIT\LaravelExchange1C\Interfaces\ProductInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Zenwalker\CommerceML\CommerceML;
 use Zenwalker\CommerceML\Model\Offer;

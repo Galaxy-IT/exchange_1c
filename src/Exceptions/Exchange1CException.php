@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C\Exceptions;
+namespace GalaxyIT\LaravelExchange1C\Exceptions;
 
 /**
  * Class Exchange1CException.

@@ -7,18 +7,18 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C\Services;
+namespace GalaxyIT\LaravelExchange1C\Services;
 
-use Galaxy\LaravelExchange1C\Config;
-use Galaxy\LaravelExchange1C\Events\AfterProductsSync;
-use Galaxy\LaravelExchange1C\Events\AfterUpdateProduct;
-use Galaxy\LaravelExchange1C\Events\BeforeProductsSync;
-use Galaxy\LaravelExchange1C\Events\BeforeUpdateProduct;
-use Galaxy\LaravelExchange1C\Exceptions\Exchange1CException;
-use Galaxy\LaravelExchange1C\Interfaces\EventDispatcherInterface;
-use Galaxy\LaravelExchange1C\Interfaces\GroupInterface;
-use Galaxy\LaravelExchange1C\Interfaces\ModelBuilderInterface;
-use Galaxy\LaravelExchange1C\Interfaces\ProductInterface;
+use GalaxyIT\LaravelExchange1C\Config;
+use GalaxyIT\LaravelExchange1C\Events\AfterProductsSync;
+use GalaxyIT\LaravelExchange1C\Events\AfterUpdateProduct;
+use GalaxyIT\LaravelExchange1C\Events\BeforeProductsSync;
+use GalaxyIT\LaravelExchange1C\Events\BeforeUpdateProduct;
+use GalaxyIT\LaravelExchange1C\Exceptions\Exchange1CException;
+use GalaxyIT\LaravelExchange1C\Interfaces\EventDispatcherInterface;
+use GalaxyIT\LaravelExchange1C\Interfaces\GroupInterface;
+use GalaxyIT\LaravelExchange1C\Interfaces\ModelBuilderInterface;
+use GalaxyIT\LaravelExchange1C\Interfaces\ProductInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Zenwalker\CommerceML\CommerceML;
 use Zenwalker\CommerceML\Model\Product;

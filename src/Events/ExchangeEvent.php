@@ -1,6 +1,6 @@
 <?php
 
-namespace Galaxy\LaravelExchange1C\Events;
+namespace GalaxyIT\LaravelExchange1C\Events;
 
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;

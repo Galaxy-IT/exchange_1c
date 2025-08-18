@@ -7,12 +7,12 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C\Jobs;
+namespace GalaxyIT\LaravelExchange1C\Jobs;
 
-use Galaxy\LaravelExchange1C\Services\AuthService;
-use Galaxy\LaravelExchange1C\Services\CatalogService;
-use Galaxy\LaravelExchange1C\Services\CategoryService;
-use Galaxy\LaravelExchange1C\Services\OfferService;
+use GalaxyIT\LaravelExchange1C\Services\AuthService;
+use GalaxyIT\LaravelExchange1C\Services\CatalogService;
+use GalaxyIT\LaravelExchange1C\Services\CategoryService;
+use GalaxyIT\LaravelExchange1C\Services\OfferService;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;

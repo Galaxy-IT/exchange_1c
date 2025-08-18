@@ -9,13 +9,13 @@
 
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C\Services;
+namespace GalaxyIT\LaravelExchange1C\Services;
 
-use Galaxy\LaravelExchange1C\Config;
+use GalaxyIT\LaravelExchange1C\Config;
 use Illuminate\Contracts\Session\Session;
 use Symfony\Component\HttpFoundation\Request;
-use Galaxy\LaravelExchange1C\Library\CookieEncryption;
-use Galaxy\LaravelExchange1C\Exceptions\Exchange1CException;
+use GalaxyIT\LaravelExchange1C\Library\CookieEncryption;
+use GalaxyIT\LaravelExchange1C\Exceptions\Exchange1CException;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 /**

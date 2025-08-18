@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C\Interfaces;
+namespace GalaxyIT\LaravelExchange1C\Interfaces;
 
 interface GroupInterface extends IdentifierInterface
 {

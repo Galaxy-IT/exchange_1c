@@ -17,9 +17,9 @@ return [
     'use_zip'       => false,
     'file_part'     => 0,
     'models'        => [
-        \Galaxy\LaravelExchange1C\Interfaces\GroupInterface::class   => \App\Models\Category::class,
-        \Galaxy\LaravelExchange1C\Interfaces\ProductInterface::class => \App\Models\Product::class,
-        \Galaxy\LaravelExchange1C\Interfaces\OfferInterface::class   => \App\Models\Offer::class,
+        \GalaxyIT\LaravelExchange1C\Interfaces\GroupInterface::class   => \App\Models\Category::class,
+        \GalaxyIT\LaravelExchange1C\Interfaces\ProductInterface::class => \App\Models\Product::class,
+        \GalaxyIT\LaravelExchange1C\Interfaces\OfferInterface::class   => \App\Models\Offer::class,
     ],
     'log_channel' => 'daily',
     'queue'       => 'default',

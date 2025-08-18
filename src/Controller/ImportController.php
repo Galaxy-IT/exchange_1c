@@ -9,18 +9,18 @@
 
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C\Controller;
+namespace GalaxyIT\LaravelExchange1C\Controller;
 
 use Exception;
 use LogicException;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 use Illuminate\Support\Facades\Log;
-use Galaxy\LaravelExchange1C\Events\ExchangeEvent;
-use Galaxy\LaravelExchange1C\Services\SaleService;
-use Galaxy\LaravelExchange1C\Jobs\CatalogServiceJob;
-use Galaxy\LaravelExchange1C\Services\CatalogService;
-use Galaxy\LaravelExchange1C\Exceptions\Exchange1CException;
+use GalaxyIT\LaravelExchange1C\Events\ExchangeEvent;
+use GalaxyIT\LaravelExchange1C\Services\SaleService;
+use GalaxyIT\LaravelExchange1C\Jobs\CatalogServiceJob;
+use GalaxyIT\LaravelExchange1C\Services\CatalogService;
+use GalaxyIT\LaravelExchange1C\Exceptions\Exchange1CException;
 
 /**
  * Class ImportController.

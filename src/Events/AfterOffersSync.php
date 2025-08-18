@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C\Events;
+namespace GalaxyIT\LaravelExchange1C\Events;
 
 class AfterOffersSync extends AbstractEventInterface
 {

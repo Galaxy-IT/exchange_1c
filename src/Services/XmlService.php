@@ -1,6 +1,6 @@
 <?php
 
-namespace Galaxy\LaravelExchange1C\Services;
+namespace GalaxyIT\LaravelExchange1C\Services;
 
 use Spatie\ArrayToXml\ArrayToXml;
 

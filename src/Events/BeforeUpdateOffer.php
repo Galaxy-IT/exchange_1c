@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C\Events;
+namespace GalaxyIT\LaravelExchange1C\Events;
 
-use Galaxy\LaravelExchange1C\Interfaces\OfferInterface;
+use GalaxyIT\LaravelExchange1C\Interfaces\OfferInterface;
 use Zenwalker\CommerceML\Model\Offer;
 
 class BeforeUpdateOffer extends AbstractEventInterface

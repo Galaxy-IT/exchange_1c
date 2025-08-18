@@ -1,6 +1,6 @@
 <?php
 
-namespace Galaxy\LaravelExchange1C\Library;
+namespace GalaxyIT\LaravelExchange1C\Library;
 
 use Illuminate\Cookie\CookieValuePrefix;
 use Illuminate\Cookie\Middleware\EncryptCookies;

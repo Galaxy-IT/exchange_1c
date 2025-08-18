@@ -7,7 +7,7 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C;
+namespace GalaxyIT\LaravelExchange1C;
 
 /**
  * Class Config.

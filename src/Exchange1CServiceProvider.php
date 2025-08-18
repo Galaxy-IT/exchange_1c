@@ -7,12 +7,12 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C;
+namespace GalaxyIT\LaravelExchange1C;
 
-use Galaxy\LaravelExchange1C\Config;
-use Galaxy\LaravelExchange1C\Interfaces\EventDispatcherInterface;
-use Galaxy\LaravelExchange1C\Interfaces\ModelBuilderInterface;
-use Galaxy\LaravelExchange1C\ModelBuilder;
+use GalaxyIT\LaravelExchange1C\Config;
+use GalaxyIT\LaravelExchange1C\Interfaces\EventDispatcherInterface;
+use GalaxyIT\LaravelExchange1C\Interfaces\ModelBuilderInterface;
+use GalaxyIT\LaravelExchange1C\ModelBuilder;
 use Illuminate\Contracts\Events\Dispatcher;
 use Illuminate\Support\ServiceProvider;
 

@@ -11,8 +11,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Developer",
-            "role": "Developer"
+            "name": "Vitalii Yakymenko",
+            "role": "CEO of Galaxy IT Inc."
         }
     ],
     "minimum-stability": "stable",
@@ -25,17 +25,17 @@
         "psr-4": {}
     },
     "require": {
-        "php": "^7.4|^8.0",
-        "carono/commerceml": "^0.2.3",
-        "laravel/framework": "8.x",
-        "spatie/array-to-xml": "^3.1"
+        "php": "^7.4|^8.x",
+        "carono/commerceml": "^0.2.6",
+        "laravel/framework": "^8.x|^12.x",
+        "spatie/array-to-xml": "^3.x"
     },
     "require-dev": {
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Galaxy\\LaravelExchange1C\\Exchange1CServiceProvider"
+                "GalaxyIT\\LaravelExchange1C\\Exchange1CServiceProvider"
             ]
         }
     }

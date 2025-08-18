@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C\Services;
+namespace GalaxyIT\LaravelExchange1C\Services;
 
-use Galaxy\LaravelExchange1C\Library\CookieEncryption;
+use GalaxyIT\LaravelExchange1C\Library\CookieEncryption;
 
 /**
  * Class Catalog

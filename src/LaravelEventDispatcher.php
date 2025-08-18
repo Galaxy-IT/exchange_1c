@@ -7,10 +7,10 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C;
+namespace GalaxyIT\LaravelExchange1C;
 
-use Galaxy\LaravelExchange1C\Interfaces\EventDispatcherInterface;
-use Galaxy\LaravelExchange1C\Interfaces\EventInterface;
+use GalaxyIT\LaravelExchange1C\Interfaces\EventDispatcherInterface;
+use GalaxyIT\LaravelExchange1C\Interfaces\EventInterface;
 use Illuminate\Contracts\Events\Dispatcher;
 
 /**

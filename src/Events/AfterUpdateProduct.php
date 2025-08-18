@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C\Events;
+namespace GalaxyIT\LaravelExchange1C\Events;
 
-use Galaxy\LaravelExchange1C\Interfaces\ProductInterface;
+use GalaxyIT\LaravelExchange1C\Interfaces\ProductInterface;
 
 class AfterUpdateProduct extends AbstractEventInterface
 {

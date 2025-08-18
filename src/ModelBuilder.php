@@ -7,10 +7,10 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C;
+namespace GalaxyIT\LaravelExchange1C;
 
-use Galaxy\LaravelExchange1C\Exceptions\Exchange1CException;
-use Galaxy\LaravelExchange1C\Interfaces\ModelBuilderInterface;
+use GalaxyIT\LaravelExchange1C\Exceptions\Exchange1CException;
+use GalaxyIT\LaravelExchange1C\Interfaces\ModelBuilderInterface;
 
 /**
  * Class ModelBuilder.

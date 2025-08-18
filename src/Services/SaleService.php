@@ -1,8 +1,8 @@
 <?php
 
-namespace Galaxy\LaravelExchange1C\Services;
+namespace GalaxyIT\LaravelExchange1C\Services;
 
-use Galaxy\LaravelExchange1C\Config;
+use GalaxyIT\LaravelExchange1C\Config;
 
 class SaleService
 {

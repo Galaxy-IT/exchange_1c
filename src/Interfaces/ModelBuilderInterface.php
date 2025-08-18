@@ -7,9 +7,9 @@
  */
 declare(strict_types=1);
 
-namespace Galaxy\LaravelExchange1C\Interfaces;
+namespace GalaxyIT\LaravelExchange1C\Interfaces;
 
-use Galaxy\LaravelExchange1C\Config;
+use GalaxyIT\LaravelExchange1C\Config;
 
 /**
  * Class ModelBuilderInterface.
