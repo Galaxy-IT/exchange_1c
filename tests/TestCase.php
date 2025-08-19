@@ -9,7 +9,7 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Galaxy\LaravelExchange1C\Exchange1CServiceProvider;
+use GalaxyIT\LaravelExchange1C\Exchange1CServiceProvider;
 
 /**
  * Class TestCase.
