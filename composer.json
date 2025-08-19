@@ -28,7 +28,7 @@
         "php": "^7.4|^8.0",
         "carono/commerceml": "^0.2.6",
         "laravel/framework": "^8.0|^12.0",
-        "spatie/array-to-xml": "^3.x"
+        "spatie/array-to-xml": "3.x"
     },
     "require-dev": {
     },
