@@ -18,7 +18,7 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Galaxy\\LaravelExchange1C\\": "src/"
+            "GalaxyIT\\LaravelExchange1C\\": "src/"
         }
     },
     "autoload-dev": {

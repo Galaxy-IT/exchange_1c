@@ -12,7 +12,7 @@ namespace GalaxyIT\LaravelExchange1C\Events;
 /**
  * Class AbstractEventInterface.
  */
-abstract class AbstractEventInterface implements \Galaxy\LaravelExchange1C\Interfaces\EventInterface
+abstract class AbstractEventInterface implements \GalaxyIT\LaravelExchange1C\Interfaces\EventInterface
 {
     public const NAME = self::class;
 

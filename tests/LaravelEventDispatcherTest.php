@@ -9,9 +9,9 @@ declare(strict_types=1);
 
 namespace Tests;
 
-use Galaxy\LaravelExchange1C\Interfaces\EventDispatcherInterface;
-use Galaxy\LaravelExchange1C\Interfaces\EventInterface;
-use Galaxy\LaravelExchange1C\LaravelEventDispatcher;
+use GalaxyIT\LaravelExchange1C\Interfaces\EventDispatcherInterface;
+use GalaxyIT\LaravelExchange1C\Interfaces\EventInterface;
+use GalaxyIT\LaravelExchange1C\LaravelEventDispatcher;
 
 class LaravelEventDispatcherTest extends TestCase
 {

@@ -48,9 +48,9 @@ class Config
      * @var array
      */
     private $models = [
-        \Galaxy\LaravelExchange1C\Interfaces\GroupInterface::class   => null,
-        \Galaxy\LaravelExchange1C\Interfaces\ProductInterface::class => null,
-        \Galaxy\LaravelExchange1C\Interfaces\OfferInterface::class   => null,
+        \GalaxyIT\LaravelExchange1C\Interfaces\GroupInterface::class   => null,
+        \GalaxyIT\LaravelExchange1C\Interfaces\ProductInterface::class => null,
+        \GalaxyIT\LaravelExchange1C\Interfaces\OfferInterface::class   => null,
     ];
 
     /**
